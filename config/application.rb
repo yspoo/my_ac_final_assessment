@@ -27,5 +27,7 @@ module RspecOwnPractice
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.filestack_rails.api_key = ENV['FILESTACK_KEY']
   end
 end
