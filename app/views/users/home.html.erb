@@ -1,4 +1,4 @@
-<h1>HOME page for SIGNED IN User</h1>
+
 
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
@@ -7,7 +7,7 @@
 <h1>List of Users</h1>
 <ol>
   <% @users.each do |user| %>
-    <li><%= link_to user.username, user_path(user) %></li>
+    <li><%= user.username %></li>
     <%= render partial: "users/partials/follow_form", locals: {user: user} %>
   <% end %>
 </ol>
@@ -16,18 +16,7 @@
 <%= link_to "Create Note", new_note_path %>
 <ul>
   <% @notes.each do |note| %>
-    <li><%= link_to note.title %> by <%= link_to note.user.username, user_path(current_user) %></li>
-    <%= link_to note.body %>
+    <li><%= link_to note.title, note_path(note) %> by <%= note.user.username %></li>
+    <%= note.body %>
   <% end %>
-
 </ul>
-
-table called likes
-id
-user_id
-note_id
-
-if current_user likes, input note_id and current_user id
-
-
-likes is like following but slightly different.

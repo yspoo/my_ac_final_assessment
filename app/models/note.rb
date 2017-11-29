@@ -2,6 +2,6 @@ class Note < ApplicationRecord
 
   belongs_to :user
 
-  validates :note_id, presence: true
-
+  validates :title, presence: true
+  validates :body, presence: true
 end

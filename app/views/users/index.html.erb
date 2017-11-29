@@ -1,16 +1,12 @@
-<h1>INDEX page for NON SIGNED IN User</h1>
-
 <%= link_to "Sign In", new_user_session_path %>
 <%= link_to "Sign Up", new_user_registration_path %>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
-
 
 <p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
 
 <h1>List of Users</h1>
 <ol>
-  <%= @users.each do |user| %>
-    <!-- <li><%# link_to user.username, user_path(user) %></li> -->
+  <% @users.each do |user| %>
     <li><%= user.username %></li>
   <% end %>
 </ol>
@@ -19,20 +15,7 @@
 <h1>List of Notes of Users</h1>
 <ul>
   <% @notes.each do |note| %>
-  <!-- <li><%# link_to note.title %> by <%# link_to note.user.username, user_path(note.user) %></li>
-  <%# link_to note.body %> -->
   <li><%= note.title %> by <%= note.user.username %></li>
   <%= note.body %>
   <% end %>
 </ul>
-
-
-
-
-
-
-<!-- <%= link_to "Back", authenticated_user_homepage_path %>
-<%# link_to "Create Note", new_note_path %>
-<%# link_to "Edit Note", edit_note_path(@note) %>
-<%# link_to "Show Note", note_path(@note) %>
-<%# link_to "Destory Note", note_path(@note), method: :delete, data: {confirm: "Are you sure?"} %> -->

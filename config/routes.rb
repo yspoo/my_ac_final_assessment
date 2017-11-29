@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-  
+
   authenticated :user do
     root to: "users#home", as: :authenticated_user_homepage # only show the users that current user follows.
   end
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :notes
 
-  resources :relationships, only: [:create, :destroy], param: :user_id
+  resources :relationships, only: [:create, :destroy]
 
 end
 

@@ -17,12 +17,4 @@ class UsersController < ApplicationController
     @notes = Note.all.order(:title)
   end
 
-  private
-
-  def find_user
-  end
-
-  def find_note
-  end
-
 end
