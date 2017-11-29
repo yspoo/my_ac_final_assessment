@@ -1,1 +1,7 @@
-<h1> This is NEW for NOTES. </h1>
+<%= link_to "Back", authenticated_user_homepage_path %>
+
+<%= simple_form_for @note do |f| %>
+  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.button :submit %>
+<% end %>

@@ -12,12 +12,13 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.build(note_params)
     respond_to do |format|
-    if @note.save
-      format.html { redirect_to authenticated_user_homepage_path, notice: "Note was successfully created!" }
-    else
-      format.html { render :new }
+      if @note.save
+        format.html { redirect_to authenticated_user_homepage_path, notice: "Note was successfully created!" }
+      else
+        format.html { render :new }
+      end
     end
   end
 
@@ -26,10 +27,11 @@ class NotesController < ApplicationController
 
   def update
     respond_to do |format|
-    if @note.update(note_params)
-      format.html { redirect_to authenticated_user_homepage_path, notice: "Note was successfully updated!"}
-    else
-      format.html { render :edit }
+      if @note.update(note_params)
+        format.html { redirect_to authenticated_user_homepage_path, notice: "Note was successfully updated!"}
+      else
+        format.html { render :edit }
+      end
     end
   end
 

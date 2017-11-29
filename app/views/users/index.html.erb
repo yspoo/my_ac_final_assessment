@@ -1,4 +1,4 @@
-<h1>INDEX page for User</h1>
+<h1>INDEX page for NON SIGNED IN User</h1>
 
 <%= link_to "Sign In", new_user_session_path %>
 <%= link_to "Sign Up", new_user_registration_path %>
@@ -10,19 +10,21 @@
 <h1>List of Users</h1>
 <ol>
   <%= @users.each do |user| %>
-    <li><%= link_to user.username, user_path(user) %></li>
+    <!-- <li><%# link_to user.username, user_path(user) %></li> -->
+    <li><%= user.username %></li>
   <% end %>
 </ol>
 
 
 <h1>List of Notes of Users</h1>
 <ul>
-  <%= @users.each do |user| %>
-  <li>"NOTE TITLE" by <%= link_to user.username, user_path(user) %></li>
-  <li>"Note Body"</li>
+  <% @notes.each do |note| %>
+  <!-- <li><%# link_to note.title %> by <%# link_to note.user.username, user_path(note.user) %></li>
+  <%# link_to note.body %> -->
+  <li><%= note.title %> by <%= note.user.username %></li>
+  <%= note.body %>
   <% end %>
 </ul>
-
 
 
 

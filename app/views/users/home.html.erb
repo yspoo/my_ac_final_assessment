@@ -1,6 +1,8 @@
-<h1>HOME page for User</h1>
+<h1>HOME page for SIGNED IN User</h1>
 
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
+
+<p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
 
 <h1>List of Users</h1>
 <ol>
@@ -8,3 +10,20 @@
     <li><%= link_to user.username, user_path(user) %></li>
   <% end %>
 </ol>
+
+<h1>List of Notes of Users</h1>
+<%= link_to "Create Note", new_note_path %>
+<ul>
+  <% @notes.each do |note| %>
+  <li><%= link_to note.title %> by <%= link_to note.user.username, user_path(current_user) %></li>
+  <%= link_to note.body %>
+    <%= f.button :submit %>
+  <% end %>
+</ul>
+
+table called likes
+id
+user_id
+note_id
+
+if current_user likes, input note_id and current_user id
