@@ -4,7 +4,7 @@
 
 <p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
 
-<h1>List of Users</h1>
+<h1>List of Users that I am following</h1>
 <ol>
   <% @users.each do |user| %>
     <li><%= user.username %></li>
@@ -12,7 +12,7 @@
   <% end %>
 </ol>
 
-<h1>List of Notes of Users</h1>
+<h1>List of Notes of Users that I am following</h1>
 <%= link_to "Create Note", new_note_path %>
 <ul>
   <% @notes.each do |note| %>

@@ -12,9 +12,10 @@ class UsersController < ApplicationController
     # only show users that current_user follows
     if user_signed_in?
       @note = current_user.notes.build
+      @feed_notes = current_user.feed
+      @users = User.all.order(:username, :email)
+      @notes = Note.all.order(:title)
     end
-    @users = User.all.order(:username, :email)
-    @notes = Note.all.order(:title)
   end
 
 end
