@@ -1,0 +1,12 @@
+<h1>This is SHOW for NOTES.</h1>
+
+</br>
+
+<h2>Title: <%= @note.title %></h2>
+<h2>Body: <%= @note.body %></h2>
+
+</br>
+
+<%= link_to "Back", authenticated_user_homepage_path %>
+<%= link_to "Edit Note", edit_note_path(@note) %>
+<%= link_to "Destroy Note", note_path(@note), method: :delete, data: { confirm: "Are you sure?" }  %>
