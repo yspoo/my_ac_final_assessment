@@ -14,9 +14,7 @@ class UsersController < ApplicationController
       @note = current_user.notes.build
     end
     @users = User.all.order(:username, :email)
-    @note = Note.new
     @notes = Note.all.order(:title)
-    # byebug
   end
 
   private
