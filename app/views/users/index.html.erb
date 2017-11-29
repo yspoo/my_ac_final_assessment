@@ -1,10 +1,16 @@
 <h1>INDEX page for User</h1>
 
+<%= link_to "Sign In", new_user_session_path %>
+<%= link_to "Sign Up", new_user_registration_path %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
+
+
+<p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
 
 <h1>List of Users</h1>
 <ol>
   <%= @users.each do |user| %>
-    <li><%= link_to user.email, user_path(user) %></li>
+    <li><%= link_to user.username, user_path(user) %></li>
   <% end %>
 </ol>
 
@@ -12,13 +18,13 @@
 <h1>List of Notes of Users</h1>
 <ul>
   <%= @users.each do |user| %>
-  <li>"NOTE TITLE" by <%= link_to user.email, user_path(user) %></li>
+  <li>"NOTE TITLE" by <%= link_to user.username, user_path(user) %></li>
   <li>"Note Body"</li>
   <% end %>
 </ul>
 
 
-<%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
+
 
 
 

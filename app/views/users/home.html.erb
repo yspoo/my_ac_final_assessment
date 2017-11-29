@@ -1,0 +1,10 @@
+<h1>HOME page for User</h1>
+
+<%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
+
+<h1>List of Users</h1>
+<ol>
+  <%= @users.each do |user| %>
+    <li><%= link_to user.username, user_path(user) %></li>
+  <% end %>
+</ol>
