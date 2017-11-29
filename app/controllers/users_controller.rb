@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    # show all users
+    # show all user
+    @users = User.all.order(:username)
   end
 
   def home

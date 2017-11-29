@@ -1,15 +1,22 @@
 <h1>INDEX page for User</h1>
+
+
 <h1>List of Users</h1>
 <ol>
-  <li>User 1</li>
-  <li>User 2</li>
+  <%= @users.each do |user| %>
+    <li><%= link_to user.email, user_path(user) %></li>
+  <% end %>
 </ol>
+
 
 <h1>List of Notes of Users</h1>
 <ul>
-  <li>"How to write" by User 1</li>
-  <li>"How to code" by User 2</li>
+  <%= @users.each do |user| %>
+  <li>"NOTE TITLE" by <%= link_to user.email, user_path(user) %></li>
+  <li>"Note Body"</li>
+  <% end %>
 </ul>
+
 
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
