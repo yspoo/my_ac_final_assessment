@@ -1,5 +1,3 @@
-
-
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
 <p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
@@ -15,7 +13,7 @@
 <h1>List of Notes of Users that I am following</h1>
 <%= link_to "Create Note", new_note_path %>
 <ul>
-  <% @notes.each do |note| %>
+  <% @feed_notes.each do |note| %>
     <li><%= link_to note.title, note_path(note) %> by <%= note.user.username %></li>
     <%= note.body %>
   <% end %>

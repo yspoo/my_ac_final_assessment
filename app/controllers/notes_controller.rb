@@ -43,6 +43,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to authenticated_user_homepage_path, notice: "Note was successfully destroyed!"}
     end
+    UserMailer.delete_note_notification(@note.user).deliver_later
   end
 
   private

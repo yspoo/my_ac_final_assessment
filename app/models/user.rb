@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :notes, dependent: :destroy
+
+
   has_many :active_relationships,  class_name:   "Relationship",
                                    foreign_key:  "follower_id",
                                    dependent:    :destroy
@@ -13,6 +15,10 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+
+  # has_many :likes, dependent: :destroy
+  has_many :liked, class_name: "Note", through: :likes, source: :note, dependent: :destroy   # user.liked will return all the notes that the user liked. source: :note refers to the note_id column. source always refer to a column in the model and its value is always a column that represents ID.
+
 
   def feed
     following_ids = "SELECT followed_id FROM relationships  WHERE   follower_id = :user_id"
@@ -34,6 +40,20 @@ class User < ApplicationRecord
   def is_a_follower_of?(other_user)
     followers.include?(other_user)
   end
+
+
+  def like(note)
+    liked << note unless self.liked?(note)
+  end
+
+  def liked?(note)
+    liked.include?(note)
+  end
+
+  def unlike(note)
+    liked.delete(note)
+  end
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

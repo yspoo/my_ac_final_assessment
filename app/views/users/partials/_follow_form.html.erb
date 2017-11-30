@@ -3,7 +3,7 @@
     <% unless current_user.following?(user) %>
       <%= simple_form_for (current_user.active_relationships.build) do |f| %>
         <div><%= hidden_field_tag :followed_id, user.id %></div>
-        <%= f.submit "Follow", class: "btn btn-primary my-button" %>
+        <%= f.submit "Follow", class: "btn btn-primary" %>
       <% end %>
     <% end %>
     <%= link_to 'Unfollow', relationship_path(user), method: :delete, class: "btn btn-danger" if current_user.following?(user)%>

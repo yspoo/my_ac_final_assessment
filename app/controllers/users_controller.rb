@@ -18,4 +18,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    UserMailer.delete_account_notification(user).deliver_later
+  end
+
 end
