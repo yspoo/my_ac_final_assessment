@@ -19,7 +19,6 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked, class_name: "Note", through: :likes, source: :note, dependent: :destroy   # user.liked will return all the notes that the user liked. source: :note refers to the note_id column. source always refer to a column in the model and its value is always a column that represents ID.
 
-
   def feed
     following_ids = "SELECT   followed_id   FROM    relationships  WHERE   follower_id = :user_id"
     Note.where("user_id   IN    (#{following_ids})    OR    user_id = :user_id", user_id: id)
@@ -45,9 +44,6 @@ class User < ApplicationRecord
     liked.include?(note)
   end
 
-
-
-
   # def like(note)
   #   liked << note unless self.liked?(note)
   # end
@@ -59,7 +55,6 @@ class User < ApplicationRecord
   # def unlike(note)
   #   liked.delete(note)
   # end
-
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

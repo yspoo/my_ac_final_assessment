@@ -1,7 +1,5 @@
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
-<p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
-
 <h1>List of Users that I am following</h1>
 <ol>
   <% @users.each do |user| %>
@@ -21,8 +19,8 @@
 
     <% unless current_user.liked?(note) %>
       <%= simple_form_for @like, url: likes_path, method: :post do |f| %>
-        <%= hidden_field_tag :user_id, current_user.id %>
-        <%= hidden_field_tag :note_id, note.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :note_id, value: note.id %>
         <%= f.submit "Like!", class: "btn btn-primary" %>
       <% end %> <!-- simple_form end -->
     <% else %>

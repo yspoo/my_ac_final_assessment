@@ -2,8 +2,6 @@
 <%= link_to "Sign Up", new_user_registration_path %>
 <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
-<p><strong>How do I extract and show username from OmniAuth Facebook login in my view?</strong></p>
-
 <h1>List of Users</h1>
 <ol>
   <% @users.each do |user| %>
