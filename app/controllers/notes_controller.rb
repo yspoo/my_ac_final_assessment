@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
 
-  before_action :find_note, only: [:edit, :update, :show, :destroy]
+  before_action :find_note, only: [:edit, :update, :show, :destroy, :like]
   before_action :authenticate_user!
 
   def index
@@ -49,7 +49,7 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :body)
+    params.require(:note).permit(:title, :body)   # only use this when you are using the REAL form, not hidden_field_tag form.
   end
 
   def find_note

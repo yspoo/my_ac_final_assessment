@@ -21,6 +21,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :likes, only: [:create, :destroy]
+  
 end
-
 # The order of the routes matter. Always put the authenticated root route BEFORE the non authenticated root route (since I want to show the non authenticated root page as the default root page and only redirect to the authenticated root page after signing in as a user.)

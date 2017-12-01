@@ -13,8 +13,23 @@
 <h1>List of Notes of Users that I am following</h1>
 <%= link_to "Create Note", new_note_path %>
 <ul>
+
   <% @feed_notes.each do |note| %>
     <li><%= link_to note.title, note_path(note) %> by <%= note.user.username %></li>
-    <%= note.body %>
-  <% end %>
+    <%= note.body %><br/>
+    <span>Like count: <%= note.likes.count %></span>
+
+    <% unless current_user.liked?(note) %>
+      <%= simple_form_for @like, url: likes_path, method: :post do |f| %>
+        <%= hidden_field_tag :user_id, current_user.id %>
+        <%= hidden_field_tag :note_id, note.id %>
+        <%= f.submit "Like!", class: "btn btn-primary" %>
+      <% end %> <!-- simple_form end -->
+    <% else %>
+      <%= link_to "Unlike!", like_path(note), method: :delete, class: "btn btn-danger" if current_user.liked?(note) %>
+    <% end %>  <!-- unless current_user.liked? end -->
+
+
+  <% end %><!-- @feed_notes.each do |note| end -->
+
 </ul>

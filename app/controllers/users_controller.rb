@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @feed_notes = current_user.feed
       @users = User.all.order(:username, :email)
       @notes = Note.all.order(:title)
+      @like = Like.new 
     end
   end
 
